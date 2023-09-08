@@ -1,6 +1,8 @@
 #include<iostream>
-#include<windows.h>
-#include<conio.h>
+#include<windows.h>//Contains declarations for all of the functions in the Windows API
+#include<conio.h>//Cncludes inbuilt functions like getch()
+#include <cstdlib>//Activates the rand()
+
 using namespace std;
 
 bool gameOver;
@@ -41,7 +43,7 @@ void Setup(){
 }
 
 void Draw(){
-	system("cls"); //clear the console window
+	system("cls"); //cls and clear are terminal/command prompt commands used to clear the screen 
 	
 	//Set the top border of the map
 	for(int i = 0; i < (width+2); ++i){
@@ -213,25 +215,28 @@ void MainMenu() {
 int main(){
 	
  int choice;
-    bool quit = false;
+ bool quit = false;
     
     while (!quit) {
+    	
+    	//Call the MainMenu()
         MainMenu();
-        cin >> choice;
+        cin >> choice;//Get the choice of the user through the keyboard
         
         switch (choice) {
             case 1:
                 Setup();
                 while (!gameOver) {
-                    Draw();
-                    Input();
-                    Logic();
-                    Sleep(200);
+                    Draw();//Call the Draw() function
+                    Input();//Call the Input() function
+                    Logic();//Call the Logic() function
+                    Sleep(200);//Cntrol the speed of the game
                 }
                 break;
             case 2:
                 // Display instructions here
-                system("cls");
+                
+                system("cls");//cls and clear are terminal/command prompt commands used to clear the screen 
                 cout << "=== Instructions ===" << endl;
                 cout << "Use w(up), s(down), a(left), d(right) to control the snake's direction." << endl;
                 cout << "Eat the fruit (F) to score points and grow longer." << endl;
@@ -239,17 +244,24 @@ int main(){
                 cout << "You can go through the walls." << endl;
                 cout << "Press 'x' to quit the game at any time." << endl;
                 cout << "Press any key to return to the main menu..." << endl;
-                _getch();
+                _getch();//When user clcik any other key user will go the main menu
                 break;
             case 3:
                 quit = true;
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
-                _getch();
+                _getch();//When user click any other key in the keyboard quit option will be executed
                 break;
         }
     }
 	
 	return 0;
 }
+
+
+//Referenced notes
+//Frequent Clearing of the Console: In your code, you are using system("cls") to clear the console at every frame of your game. 
+//This frequent clearing and redrawing of the entire console can cause flickering. 
+//Instead, you can clear the console only when necessary, 
+//like when the game state changes, and update only the portions of the screen that have changed.

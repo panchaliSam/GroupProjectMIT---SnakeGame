@@ -90,6 +90,7 @@ void Draw(){
 	}
 	cout << endl;	
 	cout << "Score: " << score << endl;
+	cout << "Press 'x' to quit the game at any time." << endl;
 }
 
 void Input(){
@@ -199,17 +200,56 @@ void Logic(){
 	}
 }
 
+// Function to display the main menu
+void MainMenu() {
+    system("cls");
+    cout << "=== Snake Game Main Menu ===" << endl;
+    cout << "1. Start Game" << endl;
+    cout << "2. Instructions" << endl;
+    cout << "3. Quit" << endl;
+    cout << "Enter your choice: ";
+}
+
 int main(){
 	
-	Setup();
-	
-	while(!gameOver){
-		
-		Draw();
-		Input();
-		Logic();
-		Sleep(200);//Control the speed of the game
-	}
+ int choice;
+    bool quit = false;
+    
+    while (!quit) {
+        MainMenu();
+        cin >> choice;
+        
+        switch (choice) {
+            case 1:
+                Setup();
+                while (!gameOver) {
+                    Draw();
+                    Input();
+                    Logic();
+                    Sleep(200);
+                }
+                break;
+            case 2:
+                // Display instructions here
+                system("cls");
+                cout << "=== Instructions ===" << endl;
+                cout << "Use w(up), s(down), a(left), d(right) to control the snake's direction." << endl;
+                cout << "Eat the fruit (F) to score points and grow longer." << endl;
+                cout << "Avoid running into yourself." << endl;
+                cout << "You can go through the walls." << endl;
+                cout << "Press 'x' to quit the game at any time." << endl;
+                cout << "Press any key to return to the main menu..." << endl;
+                _getch();
+                break;
+            case 3:
+                quit = true;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+                _getch();
+                break;
+        }
+    }
 	
 	return 0;
 }

@@ -1,6 +1,6 @@
 #include<iostream>
 #include<windows.h>//Contains declarations for all of the functions in the Windows API
-#include<conio.h>//Cncludes inbuilt functions like getch()
+#include<conio.h>//Includes inbuilt functions like getch()
 #include <cstdlib>//Activates the rand()
 
 using namespace std;
